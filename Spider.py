@@ -37,3 +37,4 @@ if __name__ == "__main__":
 	root_url = "https://en.wikipedia.org/wiki/Python_(programming_language)"
 	spider_obj = Spider()
 	spider_obj.crawl(root_url)
+

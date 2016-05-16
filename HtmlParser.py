@@ -31,3 +31,4 @@ class HtmlParser(object):
 		new_urls = self._get_new_urls(url, soup)
 		new_data = self._get_new_data(url, soup)
 		return new_urls, new_data	
+
