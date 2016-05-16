@@ -25,4 +25,3 @@ class UrlManager(object):
 		url = self.new_urls.pop()
 		self.old_urls.add(url)
 		return url
-
