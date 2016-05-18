@@ -19,8 +19,12 @@ class HtmlOutputer(object):
 		
 		for data in self.data_set:
 			fout.write("<tr><td></td></tr>")
-			fout.write("<tr><td><a href='%s'>%s</a></td></tr>"%(data["url"], data["title"].encode("utf-8")))
-			fout.write("<tr><td>%s</td></tr>"%data["summary"].encode("utf-8"))
+			print "Recording: %s" %data["url"]
+			try:
+				fout.write("<tr><td><a href='%s'>%s</a></td></tr>"%(data["url"].encode("utf-8"), data["title"].encode("utf-8")))
+				fout.write("<tr><td>%s</td></tr>"%data["summary"].encode("utf-8"))
+			except:
+				print "Record fails"
 			fout.write("<tr><td></td></tr>")
 		
 		fout.write("</table>")
