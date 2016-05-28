@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import UrlManager, HtmlDownloader, HtmlParser, HtmlOutputer
+import Configure, UrlManager, HtmlDownloader, HtmlParser, HtmlOutputer
 
 class Spider(object):
 
@@ -22,7 +22,7 @@ class Spider(object):
 				self.urls.add_all(new_urls)
 				self.outputer.collect(new_data)
 
-				if cnt >= 1000:
+				if cnt >= Configure.max_num:
 					break
 
 				cnt = cnt + 1
@@ -34,7 +34,7 @@ class Spider(object):
 
 
 if __name__ == "__main__":
-	root_url = "https://en.wikipedia.org/wiki/Python_(programming_language)"
+	root_url = Configure.root_url
 	spider_obj = Spider()
 	spider_obj.crawl(root_url)
 

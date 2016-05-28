@@ -1,5 +1,7 @@
 # coding: utf-8
 
+import Configure
+
 class HtmlOutputer(object):
 
 	def __init__(self):
@@ -11,7 +13,7 @@ class HtmlOutputer(object):
 		self.data_set.append(data)
 	
 	def output(self):
-		fout = open("Crawled.html", "w")
+		fout = open(Configure.html_ofile, "w")
 		
 		fout.write("<html>")
 		fout.write("<body>")
@@ -21,8 +23,9 @@ class HtmlOutputer(object):
 			fout.write("<tr><td></td></tr>")
 			print "Recording: %s" %data["url"]
 			try:
-				fout.write("<tr><td><a href='%s'>%s</a></td></tr>"%(data["url"].encode("utf-8"), data["title"].encode("utf-8")))
-				fout.write("<tr><td>%s</td></tr>"%data["summary"].encode("utf-8"))
+				fout.write("<tr><td><a href='%s'>%s</a></td></tr>" \
+					%(data["url"].encode(Configure.coding_set), data["title"].encode(Configure.coding_set)))
+				fout.write("<tr><td>%s</td></tr>"%data["summary"].encode(Configure.coding_set))
 			except:
 				print "Record fails"
 			fout.write("<tr><td></td></tr>")

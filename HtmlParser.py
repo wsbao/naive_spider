@@ -1,13 +1,13 @@
 # URL parser using python BeautifulSoup4 (third party library)
 
 from bs4 import BeautifulSoup
-import re, urlparse
+import Configure, re, urlparse
 
 class HtmlParser(object):
 
 	def _get_new_urls(self, url, soup):
 		new_urls = set()
-		links = soup.find_all("a", href = re.compile(r"/wiki/\w+"))
+		links = soup.find_all("a", href = re.compile(Configure.lnk_regexp))
 		for link in links:
 			new_url = link["href"]
 			new_full_url = urlparse.urljoin(url, new_url)
@@ -27,7 +27,7 @@ class HtmlParser(object):
 		if url is None or html_cont is None:
 			return
 		
-		soup = BeautifulSoup(html_cont, "html.parser", from_encoding = "utf-8")
+		soup = BeautifulSoup(html_cont, "html.parser", from_encoding = Configure.coding_set)
 		new_urls = self._get_new_urls(url, soup)
 		new_data = self._get_new_data(url, soup)
 		return new_urls, new_data	
